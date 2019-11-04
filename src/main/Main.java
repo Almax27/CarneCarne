@@ -15,6 +15,8 @@ import States.Title.StateTitle;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureImpl;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.FileSystemLocation;
@@ -30,10 +32,12 @@ public class Main extends StateBasedGame
     public static void main(String[] arguments) throws IOException
     {   
         String classPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        FileSystemLocation loc = new FileSystemLocation(new File(classPath + "/../data"));
+        String appRoot = new File(classPath).getParent();
+        
+        FileSystemLocation loc = new FileSystemLocation(new File(appRoot + "/data"));
         ResourceLoader.addResourceLocation(loc);
         
-        File outputFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + "/../DebugOut.txt");
+        File outputFile = new File(appRoot + "/DebugOut.txt");
         if(!outputFile.exists())
             outputFile.createNewFile();
         PrintStream errorStream = new PrintStream(outputFile);

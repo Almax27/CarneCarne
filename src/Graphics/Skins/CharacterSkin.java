@@ -84,9 +84,9 @@ public class CharacterSkin implements iSkin
                 case e32Dir:
                 {
                     SpriteSheet ss = new SpriteSheet(absoluteRef, subSkin.mTileWidth, subSkin.mTileHeight);
-                    //ensure 18x2 tiles
-                    int reqWidth = 18;
-                    int reqHeight = 2;
+                    //ensure 6x6 tiles
+                    int reqWidth = 6;
+                    int reqHeight = 6;
                     if(ss.getHorizontalCount() != reqWidth || ss.getVerticalCount() != reqHeight)
                         Throw.err(absoluteRef + " MUST BE " + reqWidth + "x" + reqHeight + " TILES");
                     for(int y = 0; y < reqHeight; y++)

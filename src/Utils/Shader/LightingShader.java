@@ -118,7 +118,7 @@ public class LightingShader extends Shader
         l1.add(vertexFileName);
         ArrayList<String> l2 = new ArrayList<String>();
         l2.add(fragmentFileName);
-
+            
         return new LightingShader(ShaderResourceManagerImpl.getSRM(), l1, l2);
     }
 }

@@ -91,9 +91,9 @@ public class StateTitle extends BasicGameState
             //sSound.loadFile("menu1", "assets/music/Menu1.ogg");
 
             //initialise fonts
-            mUIFont = sFontLoader.createFont("title",72);    
+            mUIFont = sFontLoader.createFont("title",72);
             mUIFont.setPaddingAdvanceX(-2);
-            mInputFont = sFontLoader.createFont("menu", 72, false, true); 
+            mInputFont = sFontLoader.createFont("menu", 72, false, true);
 
             //initialise background & foreground
             mBackground = new GraphicalComponent(_gc);

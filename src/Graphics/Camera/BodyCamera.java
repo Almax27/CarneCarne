@@ -83,8 +83,11 @@ public class BodyCamera extends iCamera implements iEventListener
         try 
         {
             mOverlay = new Image("ui/overlay.png");
-            mLightingShader = LightingShader.makeShader("shaders/test.vert", "shaders/test.frag");
-            mLightBlendBase = new Image((int)mViewPort.getWidth(), (int)mViewPort.getHeight());
+            if(sGraphicsManager.getAllowShaders())
+            {
+                mLightingShader = LightingShader.makeShader("shaders/test.vert", "shaders/test.frag");
+                mLightBlendBase = new Image((int)mViewPort.getWidth(), (int)mViewPort.getHeight());
+            }
         } catch (SlickException ex) {Logger.getLogger(BodyCamera.class.getName()).log(Level.SEVERE, null, ex);}    
     }
     
@@ -241,7 +244,7 @@ public class BodyCamera extends iCamera implements iEventListener
     
     protected void renderLighting(Graphics _graphics)
     {
-        if(sGraphicsManager.getAllowShaders())
+        if(mLightingShader != null && mLightBlendBase != null)
         {
             //update visible source list
             mLightingShader.clearSources();

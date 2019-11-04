@@ -55,7 +55,7 @@ public class Revolver extends GraphicalComponent
     public Vector2f getOffset()
     {
         float s = 0.75f;
-        return new Vector2f(mSpriteSheet.getWidth()/mSpriteSheet.getHorizontalCount()*s,mSpriteSheet.getHeight()*s);
+        return new Vector2f(mSpriteSheet.getSprite(0,0).getWidth()*s,mSpriteSheet.getSprite(0,0).getHeight()*s);
     }
     int mTargetFrame = defaultAmmo;
     int mCurrentFrame = defaultAmmo;
@@ -99,7 +99,7 @@ public class Revolver extends GraphicalComponent
                     mCurrentFrame = 0;
             }
         }
-        mImage = mSpriteSheet.getSprite(mCurrentFrame, 0);
+        mImage = mSpriteSheet.getSprite(mCurrentFrame%mSpriteSheet.getHorizontalCount(), (int)Math.floor((float)mCurrentFrame/(float)mSpriteSheet.getHorizontalCount())); 
         return super.updateSelf(_delta);
     }
 
