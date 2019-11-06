@@ -1,0 +1,20 @@
+Starting Game
+Wed Nov 06 05:18:59 GMT 2019 INFO:Slick Build #229
+Wed Nov 06 05:19:01 GMT 2019 INFO:LWJGL Version: 2.7.1
+Wed Nov 06 05:19:01 GMT 2019 INFO:OriginalDisplayMode: 1920 x 1080 x 32 @144Hz
+Wed Nov 06 05:19:01 GMT 2019 INFO:TargetDisplayMode: 1280 x 800 x 0 @0Hz
+Wed Nov 06 05:19:02 GMT 2019 INFO:Starting display 1280x800
+Wed Nov 06 05:19:02 GMT 2019 INFO:Use Java PNG Loader = true
+WARNING: Found unknown Windows version: Windows 10
+Attempting to use default windows plug-in.
+Failed to initialize device Synaptics HID-Compliant Touch pad Device because of: java.io.IOException: Failed to acquire device (8007001e)
+Wed Nov 06 05:19:04 GMT 2019 INFO:Found 3 controllers
+Wed Nov 06 05:19:04 GMT 2019 INFO:0 : SteelSeries KLC
+Wed Nov 06 05:19:04 GMT 2019 INFO:1 : SteelSeries Gaming Keyboard
+Wed Nov 06 05:19:04 GMT 2019 INFO:2 : Controller (XBOX 360 For Windows)
+Wed Nov 06 05:19:04 GMT 2019 INFO:Initialising sounds..
+Wed Nov 06 05:19:05 GMT 2019 INFO:- Sound works
+Wed Nov 06 05:19:05 GMT 2019 INFO:- 64 OpenAL source available
+Wed Nov 06 05:19:05 GMT 2019 INFO:- Sounds source generated
+Initialising Controllers
+Controller {0} assigned to player {1}

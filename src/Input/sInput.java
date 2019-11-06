@@ -11,7 +11,6 @@ import Events.MapClickReleaseEvent;
 import Events.MouseMoveEvent;
 import Events.sEvents;
 import Graphics.sGraphicsManager;
-import States.Game.XBoxController;
 import World.sWorld;
 import java.util.ArrayList;
 import org.jbox2d.common.Vec2;
@@ -26,8 +25,7 @@ public class sInput
 {
     private sInput() {}
     static private GameContainer mGameContainer = null; 
-    static private int mPlayerCount;
-    static private ArrayList<XBoxController> xBoxControllers = new ArrayList<XBoxController>();
+    static private ArrayList<Controller> controllers = new ArrayList<Controller>();
     static MouseStateMachine mMouseStateMachine;
     static boolean mJumpToggle = false;
     static boolean mPauseToggle = false;
@@ -70,31 +68,39 @@ public class sInput
         if(input.isKeyPressed(Input.KEY_F12))
             sGraphicsManager.toggleRenderDebugInfo();
         
-        if(xBoxControllers.size() != input.getControllerCount())
+        if(controllers.size() != input.getControllerCount())
             initContollers(input);
         
-        for(XBoxController controller : xBoxControllers)
+        for(Controller controller : controllers)
         {
-            controller.update(input);
+            if(controller != null)
+            {
+                controller.update(input, _delta);
+            }
         }
     }
     
     private static void initContollers(Input input)
     {
-        //handle controller input
-        int i = 0;
-        mPlayerCount = input.getControllerCount();
+        System.err.println("Initialising Controllers");
 
-        while (xBoxControllers.size() < mPlayerCount)
+        controllers.clear();
+        
+        boolean useControllerForPlayer0 = true;
+        int playerIndex = useControllerForPlayer0 ? 0 : 1;
+
+        input.clearControlPressedRecord();
+        
+        for(int i = 0; i < input.getControllerCount(); i++)
         {
-            xBoxControllers.add(new XBoxController(i));
-            if(xBoxControllers.get(i).update(input))
-                i++;
-        }
-        mPlayerCount = i;
-        if (mPlayerCount == 0)
-        {
-            mPlayerCount = 1;
+            Controller controller = Controller.create(input, i, playerIndex);
+            if(controller != null)
+            {
+                System.err.printf("Controller {0} assigned to player {1}\n", i, playerIndex);
+                playerIndex++;    
+            }
+            controllers.add(controller);
+            
         }
     }
     public static void setAbsCursorPos(Vec2 _pos)

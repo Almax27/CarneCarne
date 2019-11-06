@@ -124,13 +124,13 @@ public class StateTitle extends BasicGameState
             //FIXME: want this to be a child to root, need to implement scaling compoents in heirarchy
             mParalax0 = new ScrollableComponent(_gc, paralaxPos, paralaxDim);
             mParalax0.setAbsScroll(3045,8);
-           // mParalax0.setImage("ui/title/p0.png");
+            mParalax0.setImage("ui/title/p0.png");
             mParalax1 = new ScrollableComponent(_gc, paralaxPos, paralaxDim);
             mParalax1.setAbsScroll(1773,0);
-           // mParalax1.setImage("ui/title/p1.png");
+            mParalax1.setImage("ui/title/p1.png");
             mParalax2 = new ScrollableComponent(_gc, paralaxPos, paralaxDim);
             mParalax2.setAbsScroll(129,86);
-            //mParalax2.setImage("ui/title/p2.png");
+            mParalax2.setImage("ui/title/p2.png");
 
             //add carrot and broc animations to the middle paralax layer
             //mParalax1.addChild(mCarrotAnimation);

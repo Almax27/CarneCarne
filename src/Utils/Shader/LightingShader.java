@@ -4,17 +4,19 @@
  */
 package Utils.Shader;
 
-import Graphics.sGraphicsManager;
-import Level.Lighting.sLightsManager;
-import World.sWorld;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
+
 import org.jbox2d.common.Vec2;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+
+import Graphics.sGraphicsManager;
+import Level.Lighting.sLightsManager;
+import World.sWorld;
 
 /**
  *
@@ -69,32 +71,36 @@ public class LightingShader extends Shader
         //WARNING: these buffers are allocated off the heap and are not properly garbage collected
         //the clear method resets the 'pointer' to the head but doesn't deallocate the memory
         //use with freak'n care
-        aux.clear();
-        aux.put(new float[]{(float)mLightSources.size(), s.x, s.y, sLightsManager.getAmbience()}).flip();
+        ((java.nio.Buffer)aux).clear();
+        aux.put(new float[]{(float)mLightSources.size(), s.x, s.y, sLightsManager.getAmbience()});
+        ((java.nio.Buffer)aux).flip();
         
         GL11.glLight(GL11.GL_LIGHT0, GL11.GL_SPECULAR, aux);
 
         for(int i = 0; i < mLightSources.size(); i++)
         {
             mLightSources.get(i).update(0);
-            fbpos.clear();
+            ((java.nio.Buffer)fbpos).clear();
             Vec2 pos = sWorld.translateToWorld(mLightSources.get(i).getPosition());
             fbpos.put(new float[]{  pos.x, 
                                     pos.y, 
                                     mLightSources.get(i).getRadius(), 
-                                    mLightSources.get(i).getTick()}).flip();
+                                    mLightSources.get(i).getTick()});
+            ((java.nio.Buffer)fbpos).flip();
 
-            color.clear();
+            ((java.nio.Buffer)color).clear();
             color.put(new float[]{  mLightSources.get(i).getColor().a, 
                                     mLightSources.get(i).getColor().g, 
                                     mLightSources.get(i).getColor().b, 
-                                    0}).flip();
+                                    0});
+            ((java.nio.Buffer)color).flip();
             
-            attenuation.clear();
+            ((java.nio.Buffer)attenuation).clear();
             attenuation.put(new float[]{mLightSources.get(i).mConstantAttentuation, 
                                         mLightSources.get(i).mQuadraticAttentuation, 
                                         0, 
-                                        0}).flip();
+                                        0});
+            ((java.nio.Buffer)attenuation).flip();
         
             GL11.glEnable(GL11.GL_LIGHT0 + i);
             GL11.glLight(GL11.GL_LIGHT0 + i, GL11.GL_POSITION, fbpos);

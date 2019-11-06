@@ -1,5 +1,0 @@
-git config --global core.editor npp.bat
-
-How could heaven be so fanatical?
-
-(do this in git rep, with npp.bat in same dir)

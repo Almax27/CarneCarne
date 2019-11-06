@@ -241,9 +241,9 @@ public class GUIManager implements iEventListener
         {
             mInputTimer = 0;
             AnalogueStickEvent event = (AnalogueStickEvent)_event;
-            if(event.getVValue() > 0)
+            if(event.getVValue() < 0)
                gotoNextSelectable();
-            else if(event.getVValue() < 0)
+            else if(event.getVValue() > 0)
                gotoPreviousSelectable();
         }
         return true; //do not unsubscribe

@@ -86,14 +86,18 @@ public class Button extends GraphicalComponent{
             }
             case eHoverOver:
             {
-                if(mState.equals(ButtonState.eSelected) && mSelectedCallback != null) //when comming from slected (on mouse release)
-                    mSelectedCallback.run();
-                else if(mOnHoverCallback != null)
+                if(mOnHoverCallback != null)
+                {
                     mOnHoverCallback.run();
+                }
                 break;
             }
             case eSelected:
             {
+                if(mSelectedCallback != null)
+                {
+                    mSelectedCallback.run();
+                }
                 break;
             }
         }
@@ -147,9 +151,6 @@ public class Button extends GraphicalComponent{
     public void select()
     {
         changeState(ButtonState.eSelected);
-        if(mSelectedCallback != null)
-            mSelectedCallback.run();
-        //changeState(ButtonState.eHoverOver);
     }
     @Override
     public void mouseMoved(int oldx, int oldy, int newx, int newy) 

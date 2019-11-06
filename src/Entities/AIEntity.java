@@ -317,7 +317,6 @@ public class AIEntity extends Entity
         switch (mAIEntityState.getState())
         {
             case eFalling:
-            case eFallingDoubleJumped:
             {
                 mBody.m_fixtureList.m_friction = 1;
                 // continue;
@@ -425,7 +424,11 @@ public class AIEntity extends Entity
     }
     public void stopJumping()
     {
-        mAIEntityState.stopJumping();
+        if(mAIEntityState.getState() == State.eJumping)
+        {
+            getBody().setLinearVelocity(new Vec2(getBody().getLinearVelocity().x, getBody().getLinearVelocity().y * 0.3f));
+            mAIEntityState.stopJumping();
+        }        
     }
     
     public void stopIdle()
@@ -443,8 +446,6 @@ public class AIEntity extends Entity
         switch(mAIEntityState.getState())
         {
             case eFalling:
-            case eFallingDoubleJumped:
-            case eJumpTransition:
             case eJumping:
                 return true;
         }

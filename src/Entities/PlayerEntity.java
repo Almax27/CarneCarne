@@ -426,7 +426,7 @@ public class PlayerEntity extends AIEntity
     @Override
     public void jump() {
         float weight = ((PlayerInputController)mController).getWeight();
-            super.jump(1/weight);
+            super.jump(1.3f/weight);
     }
     
     

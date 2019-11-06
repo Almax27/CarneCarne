@@ -15,6 +15,12 @@ import States.Title.StateTitle;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureImpl;
 import org.newdawn.slick.state.BasicGameState;
@@ -31,17 +37,37 @@ public class Main extends StateBasedGame
     
     public static void main(String[] arguments) throws IOException
     {   
-        String classPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String appRoot = new File(classPath).getParent();
+        List<String> argsList = Arrays.asList(arguments);
+
+        Path currentRelativePath = Paths.get("");
+        String appRoot = currentRelativePath.toAbsolutePath().toString();
         
         FileSystemLocation loc = new FileSystemLocation(new File(appRoot + "/data"));
         ResourceLoader.addResourceLocation(loc);
         
-        File outputFile = new File(appRoot + "/DebugOut.txt");
-        if(!outputFile.exists())
-            outputFile.createNewFile();
-        PrintStream errorStream = new PrintStream(outputFile);
-        System.setOut(errorStream);
+        if(!argsList.contains("nologfile"))
+        {
+            try
+            {
+                String logFilePath = appRoot + "/DebugOut.log";
+                System.out.println("Creating log file: " + logFilePath);
+
+                File outputFile = new File(logFilePath);
+                if(outputFile.exists())
+                    outputFile.delete();
+
+                outputFile.createNewFile();
+                
+                PrintStream fileStream = new PrintStream(outputFile);
+                System.setOut(fileStream);
+                System.setErr(fileStream);
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Starting Game");
         
         try
         {            
@@ -57,6 +83,8 @@ public class Main extends StateBasedGame
         {
             e.printStackTrace();
         }
+
+        System.out.println("Closing Game");
     }
     
 

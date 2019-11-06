@@ -188,8 +188,11 @@ class ShaderResourceManagerImpl implements ShaderResourceManager{
 
     ByteBuffer shaderPro = BufferUtils.createByteBuffer(shaderCode.length);
 
-    shaderPro.put(shaderCode);
-    shaderPro.flip();
+    if(shaderPro != null)
+    {
+      shaderPro.put(shaderCode);
+      ((java.nio.Buffer)shaderPro).flip();
+    }
 
     return shaderPro;
   }
