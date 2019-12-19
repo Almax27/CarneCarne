@@ -119,7 +119,7 @@
         <directory>build</directory>
         <outputDirectory>build/classes</outputDirectory>
         <finalName>${project.artifactId}-${project.version}</finalName>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
                 <directory>data</directory>
